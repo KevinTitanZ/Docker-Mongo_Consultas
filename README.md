@@ -60,6 +60,9 @@ _mongo-express_
 _Docker ejecutando los servicios_
 
 ![grafico19](https://i.imgur.com/YKsNbDJ.png)
+
+![grafico19](https://i.imgur.com/ABP9u5G.png)
+
  
 #### 2. Estructura del Proyecto
 
@@ -127,6 +130,7 @@ _Vista general de las colecciones en Mongo Express_
 _Visualización de documentos con referencias (laboratorio en equipo)_
 
 ![grafico19](https://i.imgur.com/x8J8Um9.png)
+
 
 
 #### 7. Consultas
