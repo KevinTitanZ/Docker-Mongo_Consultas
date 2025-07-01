@@ -1,8 +1,8 @@
-# Desarrollo e Implementación de Funcionalidades Mejoradas en una API RESTful con Angular y Node.js
+# Desarrollo de Consultas Avanzadas y Relaciones con MongoDB y Mongoose usando Docker
 
 **Estudiante:** _Ordoñez Cabrera Kevin Lenin_  
 
-**Fecha de entrega:** _30/06/2025_
+**Fecha de entrega:** _01/07/2025_
 
 **Asignatura:** _Aplicaciones Distribuidas_
 
@@ -12,130 +12,156 @@
 
 ##  Resumen
 
-Se desarrolló una aplicación web completa que integra una API RESTful construida en Node.js con Express y MongoDB, y un frontend realizado en Angular con componentes standalone. Se implementaron funcionalidades completas de autenticación mediante JWT, almacenamiento seguro de contraseñas con bcrypt, y un CRUD completo de usuarios accesible desde el frontend. 
+Este informe presenta el desarrollo de una práctica en la que se implementan consultas avanzadas y relaciones entre colecciones utilizando Mongoose sobre una base de datos MongoDB, todo en un entorno configurado con Docker. Se modelaron colecciones de usuarios, laboratorios y equipos, estableciendo relaciones entre ellas. Se realizaron consultas con operadores y agregaciones, validando el funcionamiento tanto desde Node.js como desde Mongo Express.
 
-Además, se integró manejo de sesiones, redirección de vistas, validación de formularios, mensajes de error/satisfacción, y mejoras visuales mediante estilos responsivos. El sistema se construyó bajo principios de modularidad, seguridad y escalabilidad, cumpliendo con estándares actuales de desarrollo web.
-
-**Palabras Claves:** Angular, Node.js y MongoDB.
+**Palabras Claves:** Docker, Node.js y MongoDB.
 
 
 ##  Introducción
 
-El desarrollo de aplicaciones modernas requiere de una integración efectiva entre el frontend y el backend, así como de medidas de seguridad robustas y experiencias de usuario amigables. Este proyecto tiene como objetivo construir un sistema completo de gestión de usuarios, desde la creación hasta la autenticación, empleando tecnologías actuales como Angular, Node.js, MongoDB y Mongoose.
-
-Además de implementar las operaciones básicas del CRUD, se enfocó en mejorar la seguridad con la inclusión de JWT y bcrypt, así como en optimizar la experiencia del usuario a través de formularios modernos, redirección automática, validaciones y visualizaciones dinámicas. Estas mejoras permiten construir una aplicación sólida, segura y mantenible.
+En el desarrollo de aplicaciones modernas, el manejo eficiente de datos y sus relaciones es fundamental. MongoDB es una base de datos NoSQL que permite modelar estructuras flexibles, y Mongoose ofrece una capa adicional de control al interactuar con esta base de datos desde Node.js. Esta práctica tiene como objetivo aplicar estos conceptos y herramientas, integrando además un entorno contenerizado con Docker para facilitar la portabilidad y replicabilidad del proyecto.
 
 ##  Objetivos
-- Implementar autenticación de usuarios con tokens JWT.
+- Configurar un entorno de desarrollo con Docker y Mongo Express.
 
-- Asegurar el almacenamiento de contraseñas utilizando hashing con bcrypt.
+- Modelar datos con Mongoose, definiendo relaciones entre colecciones.
 
-- Desarrollar formularios de registro y login conectados al backend.
+- Ejecutar consultas básicas y avanzadas con operadores y agregaciones.
 
 
 ##  Marco Teórico
 
-###  - API RESTful
-Una API RESTful permite la comunicación entre sistemas mediante el protocolo HTTP. Las operaciones básicas (GET, POST, PUT, DELETE) permiten acceder y modificar recursos, y son ideales para construir aplicaciones web interactivas y escalables.
+MongoDB es una base de datos orientada a documentos, ampliamente utilizada por su flexibilidad, escalabilidad y facilidad de integración con tecnologías modernas. En MongoDB, los datos se almacenan como documentos BSON (JSON binario), lo cual permite estructuras anidadas y relaciones referenciadas o embebidas.
 
-###  - JWT (JSON Web Token)
-JWT es un método estándar de autenticación basado en tokens. Permite que los usuarios inicien sesión y accedan a recursos protegidos sin necesidad de enviar credenciales en cada solicitud, mejorando tanto la seguridad como el rendimiento.
+Mongoose es una biblioteca para Node.js que proporciona una interfaz de programación para trabajar con MongoDB. Permite definir esquemas, validar datos y establecer relaciones usando referencias (ObjectId) entre documentos.
 
-###  - Bcrypt
-Bcrypt es un algoritmo de hash que se utiliza para almacenar contraseñas de manera segura. Su uso impide que las contraseñas sean leídas directamente en la base de datos, incluso si esta es comprometida.
-
-###  - Angular y Componentes Standalone
-Angular es un framework para el desarrollo de interfaces web. Los componentes standalone permiten crear vistas reutilizables y autónomas, facilitando la organización del código y la carga dinámica de vistas.
-
-###  - CRUD
-El acrónimo CRUD representa las operaciones básicas de manipulación de datos: Crear, Leer, Actualizar y Eliminar. Estas operaciones son fundamentales en sistemas que requieren interacción con usuarios o registros.
+Docker permite contenerizar aplicaciones, facilitando la gestión de entornos reproducibles, y docker-compose simplifica el despliegue de múltiples servicios como MongoDB y Mongo Express.
 
 ## Descripción del Procedimiento
 
-#### 1. Autenticación y Seguridad
-Se implementó autenticación con JWT desde el backend para generar tokens seguros al momento del login.
+#### 1. Configuración del Entorno
 
-Las contraseñas son almacenadas de forma encriptada utilizando el algoritmo bcrypt.
+Se creó un archivo docker-compose.yml que levanta dos servicios:
 
-_Algoritmo bcrypt_
+- mongo: instancia de MongoDB.
 
-![grafico19](https://i.imgur.com/PfxE9yL.png)
-![grafico19](https://i.imgur.com/H9h4Gp0.png)
+_MongoDB_
 
-Se desarrolló un middleware que valida los tokens JWT en rutas protegidas, permitiendo restringir el acceso a funcionalidades sensibles.
+![grafico19](https://i.imgur.com/O4ZSny0.png)
 
-_Tokens JWT_
+- mongo-express: interfaz gráfica para interactuar con la base de datos desde el navegador (http://localhost:8081), protegida por credenciales básicas.
 
-![grafico19](https://i.imgur.com/7joqGgt.png)
+_mongo-express_
 
-![grafico19](https://i.imgur.com/mmdwL0k.png)
+![grafico19](https://i.imgur.com/XibHUyj.png)
 
+ El comando docker-compose up -d permitió ejecutar ambos servicios en segundo plano.
 
-#### 2. CRUD Completo desde el Frontend
-Se construyó un formulario de registro de usuarios que permite enviar los datos al backend, donde se validan y almacenan.
+_Docker ejecutando los servicios_
 
-Se desarrolló un formulario de login, que al autenticarse correctamente guarda el token en el localStorage y redirige al panel principal.
-
-Se agregó una tabla que lista todos los usuarios, con opciones para editar o eliminar desde la misma vista.
-
-Se integraron todas las operaciones CRUD en un solo módulo de gestión, optimizando la navegación y la usabilidad.
-
-_Operaciones CRUD_
-
-![grafico19](https://i.imgur.com/uyHpzU2.png)
-
-#### 3. Manejo de Sesión y Redirección
-Tras el inicio de sesión exitoso, el usuario es automáticamente redirigido al panel CRUD.
-
-Se incluyó la opción de navegar entre login y registro sin perder el estado de la aplicación.
+![grafico19](https://i.imgur.com/YKsNbDJ.png)
+ 
+#### 2. Estructura del Proyecto
 
 
+_Estructura_
 
-_Login_
+![grafico19](https://i.imgur.com/S3u2fAv.png)
 
-![grafico19](https://i.imgur.com/LBVFpn2.png)
+#### 3. Modelado de las Colecciones con Mongoose
 
-_Registro_
+Se implementaron tres modelos Mongoose en la carpeta src/models/:
 
-![grafico19](https://i.imgur.com/MCPhf4m.png)
-![grafico19](https://i.imgur.com/ScJVMc4.png)
-
-
-
-#### 4.  Manejo de Errores y Mensajes
-Se integró el despliegue de mensajes claros de éxito o error al realizar cualquier operación.
-![grafico19](https://i.imgur.com/f30HVpS.png)
-
-Se añadieron validaciones obligatorias en campos como nombre, email y contraseña en ambas capas (frontend y backend).
-
-![grafico19](https://i.imgur.com/jLFFiw5.png)
+_Estructura del directorio src/models/ con los esquemas_
 
 
-## Análisis de Resultados
-La implementación del sistema de autenticación y del CRUD completo desde el frontend permitió evaluar el comportamiento de la aplicación tanto en términos de funcionalidad como de experiencia de usuario. Tras finalizar las configuraciones del backend con Express, Mongoose, JWT y bcrypt, y del frontend en Angular con componentes standalone, se observó un flujo de interacción robusto y coherente entre ambas capas.
+![grafico19](https://i.imgur.com/h8wgAls.png)
 
-La integración del formulario de registro y login permitió validar el correcto funcionamiento del cifrado de contraseñas y la generación de tokens de autenticación. Una vez autenticado, el usuario es redirigido automáticamente al panel principal, desde donde se accede a todas las funcionalidades del CRUD. Esta interacción demostró una comunicación eficaz entre frontend y backend mediante solicitudes HTTP protegidas por JWT.
+La colección Equipo fue diseñada con una relación de referencia hacia la colección Laboratorio usando ObjectId.
 
-Las pruebas con usuarios reales confirmaron que los datos se almacenan de manera segura en la base de datos MongoDB. Se verificó también que los tokens almacenados en localStorage se enviaban correctamente en las solicitudes protegidas, permitiendo acceder únicamente a los usuarios autenticados.
+_Modelo Equipo con referencia a Laboratorio_
 
-El uso de formularios con validaciones integradas y el despliegue de mensajes personalizados mejoró significativamente la usabilidad del sistema. Los errores comunes, como campos vacíos o autenticaciones inválidas, fueron gestionados correctamente con retroalimentación visual inmediata.
+![grafico19](https://i.imgur.com/l8AygLS.png)
 
 
-## Discusión
-Durante el desarrollo del sistema web con Angular y Node.js, se abordaron múltiples aspectos clave del desarrollo backend y frontend moderno. Uno de los retos más importantes fue la implementación de autenticación segura mediante JWT y el cifrado de contraseñas con bcrypt, lo cual permitió garantizar la integridad y confidencialidad de los datos de los usuarios. Esta mejora fue especialmente relevante al considerar buenas prácticas de seguridad web.
+#### 4.  Inserción de Datos Iniciales
+Se creó el archivo insertData.js para insertar registros de prueba en las colecciones. Este archivo elimina los datos existentes y luego crea usuarios, laboratorios y equipos relacionados.
 
-La integración de Angular con componentes standalone favoreció una estructura de frontend modular y organizada, simplificando tanto la navegación como la reutilización de componentes. Asimismo, la implementación de formularios de registro, inicio de sesión, y gestión de usuarios en una única vista permitió mejorar la experiencia de usuario y reducir los tiempos de interacción.
+_Script de inserción de datos en insertData.js_
+
+![grafico19](https://i.imgur.com/mRiyyXf.png)
+
+_Salida en consola al ejecutar el script_
+
+![grafico19](https://i.imgur.com/m2S6fcT.png)
+
+#### 5.  Ejecución de Consultas Básicas y Avanzadas
+
+- Se desarrolló el archivo queries.js para realizar las siguientes consultas:
+
+- Listado de usuarios.
+
+- Equipos disponibles con su laboratorio relacionado (.populate()).
+
+- Conteo de equipos por estado (.countDocuments()).
+
+- Búsqueda por correo con $regex.
+
+- Agregación con $lookup para promediar equipos por laboratorio.
+
+_Código de la consulta avanzada con $lookup_
+
+![grafico19](https://i.imgur.com/m2S6fcT.png)
+
+_Resultado en consola de todas las consultas ejecutadas_
+
+![grafico19](https://i.imgur.com/m2S6fcT.png)
+
+
+#### 6. Visualización desde Mongo Express
+
+Se accedió a http://localhost:8081 con las credenciales configuradas (admin/admin). Desde esta interfaz se visualizaron las colecciones creadas, sus documentos y relaciones, permitiendo validar que los datos insertados son correctos.
+
+_Vista general de las colecciones en Mongo Express_
+
+![grafico19](https://i.imgur.com/X5wk4LZ.png)
+
+_Visualización de documentos con referencias (laboratorio en equipo)_
+
+![grafico19](https://i.imgur.com/x8J8Um9.png)
+
+
+#### 6. Consultas
+
+_Listar todos los usuarios_
+
+![grafico19](https://i.imgur.com/6QhiFty.png)
+
+
+_Equipos disponibles con su laboratorio_
+
+![grafico19](https://i.imgur.com/C4tGZ1e.png)
+
+_Usuarios con correo @universidad.edu_
+
+![grafico19](https://i.imgur.com/2sqOgI5.png)
+
+_Promedio de equipos por laboratorio_   
+
+![grafico19](https://i.imgur.com/vRsgXBL.png)
+
+_Usar aggregate para promedio de equipos por laboratorio. Uso de$lookup,$group,$avg_
+
+![grafico19](https://i.imgur.com/aYkWbLu.png)
+![grafico19](https://i.imgur.com/SEqWuQ6.png)
+
+
 
 ## Conclusiones
-**1.** Se logró implementar un sistema completo de gestión de usuarios que incluye autenticación, seguridad y CRUD funcional desde el frontend, cumpliendo con los objetivos establecidos.
+**1.** Integrar Docker en el flujo de trabajo permitió establecer un entorno de desarrollo consistente, facilitando la gestión de servicios como MongoDB y Mongo Express sin necesidad de instalaciones locales complicadas.
 
-**2.** La integración de JWT y bcrypt fortaleció significativamente la seguridad del sistema, protegiendo la información sensible de los usuarios y controlando el acceso a las funcionalidades protegidas.
+**2.** El uso de Mongoose para modelar las colecciones en MongoDB brindó una forma estructurada de definir los datos y relaciones, permitiendo mantener la integridad entre documentos como Usuario, Laboratorio y Equipo.
 
-**3.** Las pruebas realizadas demostraron la correcta comunicación entre frontend y backend, con una gestión adecuada de sesiones, validación de campos y retroalimentación clara para el usuario.
+**3.** Se logró implementar correctamente consultas básicas y avanzadas, incluyendo filtros, búsquedas por patrones ($regex), conteos (.countDocuments()) y operaciones de agregación con $lookup y $group, lo que demuestra un dominio práctico sobre la manipulación de datos en bases NoSQL.
 
-## Recomendaciones
-
-**1.** Aplicar control de errores más detallado en cada endpoint para mejorar la retroalimentación al cliente en caso de fallos o datos inválidos.
-
-**2.** Se recomienda integrar un sistema de roles de usuario (por ejemplo, administrador, usuario normal) para diferenciar permisos de accesos.
 

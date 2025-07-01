@@ -37,7 +37,7 @@ mongoose.connect(process.env.MONGO_URI)
         totalEquipos: 1
       }}
     ]);
-    console.log("Promedio de equipos por laboratorio:", promedio);
+    console.log("Promedio de equipos por laboratorio Ultimo:", promedio);
 
     process.exit();
   })
