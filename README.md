@@ -29,7 +29,7 @@ En el desarrollo de aplicaciones modernas, el manejo eficiente de datos y sus re
 - Ejecutar consultas básicas y avanzadas con operadores y agregaciones.
 
 
-##  Marco Teórico
+##  Marco Teórico (Tecnologías utilizadas.)
 
 MongoDB es una base de datos orientada a documentos, ampliamente utilizada por su flexibilidad, escalabilidad y facilidad de integración con tecnologías modernas. En MongoDB, los datos se almacenan como documentos BSON (JSON binario), lo cual permite estructuras anidadas y relaciones referenciadas o embebidas.
 
@@ -109,9 +109,7 @@ _Salida en consola al ejecutar el script_
 
 - Agregación con $lookup para promediar equipos por laboratorio.
 
-_Código de la consulta avanzada con $lookup_
 
-![grafico19](https://i.imgur.com/m2S6fcT.png)
 
 _Resultado en consola de todas las consultas ejecutadas_
 
@@ -131,7 +129,7 @@ _Visualización de documentos con referencias (laboratorio en equipo)_
 ![grafico19](https://i.imgur.com/x8J8Um9.png)
 
 
-#### 6. Consultas
+#### 7. Consultas
 
 _Listar todos los usuarios_
 
@@ -158,10 +156,10 @@ _Usar aggregate para promedio de equipos por laboratorio. Uso de$lookup,$group,$
 
 
 ## Conclusiones
-**1.** Integrar Docker en el flujo de trabajo permitió establecer un entorno de desarrollo consistente, facilitando la gestión de servicios como MongoDB y Mongo Express sin necesidad de instalaciones locales complicadas.
+**1.** Al trabajar con Docker, comprendí la importancia de contar con un entorno de desarrollo portátil, controlado y replicable.
 
 **2.** El uso de Mongoose para modelar las colecciones en MongoDB brindó una forma estructurada de definir los datos y relaciones, permitiendo mantener la integridad entre documentos como Usuario, Laboratorio y Equipo.
 
-**3.** Se logró implementar correctamente consultas básicas y avanzadas, incluyendo filtros, búsquedas por patrones ($regex), conteos (.countDocuments()) y operaciones de agregación con $lookup y $group, lo que demuestra un dominio práctico sobre la manipulación de datos en bases NoSQL.
+**3.** Implementar consultas avanzadas, como búsquedas con $regex y operaciones de agregación con $lookup y $group, me permitió descubrir el verdadero potencial de MongoDB como sistema flexible y potente para el análisis y consulta de datos complejos.
 
 
